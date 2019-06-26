@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSellableTable extends Migration
+class CreateSellablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateSellableTable extends Migration
      */
     public function up()
     {
-        Schema::create('sellable', function (Blueprint $table) {
+        Schema::create('sellables', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->enum('SellableType', ['Service', 'Product']);
+            $table->string('image',255)->default(null)->nullable();
+            $table->integer('type');
+            $table->unsignedBigInteger('owner_id');
             $table->timestamps();
+
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 
@@ -29,6 +33,6 @@ class CreateSellableTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sellable');
+        Schema::dropIfExists('sellables');
     }
 }

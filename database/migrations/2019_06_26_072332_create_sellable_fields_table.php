@@ -17,9 +17,15 @@ class CreateSellableFieldsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->string('field_type');
+            $table->string('input_type');
+            $table->string('attributes');
             $table->string('value');
+            $table->unsignedBigInteger('sellable_id');
+
             $table->timestamps();
+
+
+            $table->foreign('sellable_id')->references('id')->on('sellables');
         });
     }
 

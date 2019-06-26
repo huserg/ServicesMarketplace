@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sellable_Fields extends Model
+class SellableField extends Model
 {
 
-    protected  $primaryKey = 'idSellableField';
-
     protected $fillable = [
-        'name', 'description', 'field_type', 'value'
+        'name', 'description', 'input_type', 'attributes', 'value'
     ];
 
     public function sellable() {

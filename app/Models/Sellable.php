@@ -8,15 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Sellable extends Model
 {
 
-    protected  $primaryKey = 'idSellable';
 
     protected $fillable = [
-        'name', 'description',
-    ];
-
-    protected $sellableType = [
-        'Service',
-        'Product',
+        'name', 'description', 'image', 'type',
     ];
 
     public function owner()
@@ -25,7 +19,7 @@ class Sellable extends Model
     }
 
     public function fields() {
-        return $this->hasMany('App\Models\Sellable_Fields');
+        return $this->hasMany('App\Models\SellableField');
     }
 
 }
