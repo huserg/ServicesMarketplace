@@ -18,8 +18,8 @@ class CreateSellableFieldsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('input_type');
-            $table->string('attributes');
-            $table->string('value');
+            $table->string('attributes')->nullable();
+            $table->string('value')->nullable();
             $table->unsignedBigInteger('sellable_id');
 
             $table->timestamps();

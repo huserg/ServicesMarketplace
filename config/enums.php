@@ -1,3 +1,5 @@
+<?php
+
 return [
     'sellable_types' => [
         1 => "Service",

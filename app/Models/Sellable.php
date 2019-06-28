@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sellable extends Model
 {
 
-
     protected $fillable = [
-        'name', 'description', 'image', 'type',
+        'name', 'description', 'price', 'image', 'type',
     ];
 
     public function owner()

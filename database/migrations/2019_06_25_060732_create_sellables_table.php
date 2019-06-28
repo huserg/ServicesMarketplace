@@ -17,6 +17,7 @@ class CreateSellablesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
+            $table->float('price');
             $table->string('image',255)->default(null)->nullable();
             $table->integer('type');
             $table->unsignedBigInteger('owner_id');

@@ -11,14 +11,19 @@
 |
 */
 
+Route::get('/', 'Visitor\VisitorSellableController@index');
+
+
+Route::namespace('Client')->group(function (){
+    Route::get('/home', 'ClientSellableController@index')->name('home');
+    Route::get('/details/{id}', 'ClientSellableController@details')->name('client.sellable.details');
+    Route::post('/order/confirm', 'ClientSellableController@order')->name('client.order');
+});
+
+
 Route::get('profile', function () {
     // Only verified users may enter...
 })->middleware('verified');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes(['verify' => true]);
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
@@ -99,5 +99,10 @@ return [
             'expire' => 60,
         ],
     ],
+
+    'ClientAuth' => ['Client', 'Service Provider', 'Property Manager', 'Administrator'],
+    'ServiceProviderAuth' => ['Service Provider', 'Property Manager', 'Administrator'],
+    'PropertyManagerAuth' => ['Property Manager', 'Administrator'],
+    'AdminAuth' => ['Administrator'],
 
 ];

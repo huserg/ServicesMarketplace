@@ -70,13 +70,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="zip" class="col-md-1 col-form-label text-md-right">{{ __('zip') }}</label>
+                            <label for="zip" class="col-md-4 col-form-label text-md-right">{{ __('Zip / Town') }}</label>
+
 
                             <div class="col-md-2">
                                 <input id="zip" type="text" class="form-control" name="zip" required autocomplete="zip">
                             </div>
-
-                            <label for="town" class="col-md-3 col-form-label text-md-right">{{ __('town') }}</label>
 
                             <div class="col-md-4">
                                 <input id="town" type="text" class="form-control" name="town" required autocomplete="town">
@@ -84,7 +83,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('country') }}</label>
+                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
                                 <input id="country" type="text" class="form-control" name="country" required autocomplete="country">
