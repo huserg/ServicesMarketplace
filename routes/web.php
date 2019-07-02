@@ -20,6 +20,15 @@ Route::namespace('Client')->group(function (){
     Route::post('/order/confirm', 'ClientSellableController@order')->name('client.order');
 });
 
+Route::namespace('Provider')->group(function (){
+    Route::get('/management', 'ProviderController@dashboard')->name('provider.menu');
+    Route::get('/management/sellable', 'ProviderController@showSellable')->name('provider.sellable');
+    Route::get('/management/sellable/manage/{$id}', 'ProviderController@manageSellable')->name('provider.sellable.manage');
+    Route::get('/management/sellable/order/{$id}', 'ProviderController@orderSellable')->name('provider.sellable.order');
+
+    Route::get('/management/settings', 'ProviderController@showSettings')->name('provider.settings');
+
+});
 
 Route::get('profile', function () {
     // Only verified users may enter...

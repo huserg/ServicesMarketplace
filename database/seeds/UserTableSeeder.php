@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
 
         $client = new User();
         $client->name = 'Client Name';
-        $client->email = 'client@example . com';
+        $client->email = 'client@example.com';
         $client->street = 'Example street 22';
         $client->zip = '1234';
         $client->town = 'Example Town';
@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
 
         $serv_prov = new User();
         $serv_prov->name = 'Service Provider Name';
-        $serv_prov->email = 'servprov@example . com';
+        $serv_prov->email = 'servprov@example.com';
         $serv_prov->password = bcrypt('secret');
         $serv_prov->street = 'Example street 22';
         $serv_prov->zip = '1234';

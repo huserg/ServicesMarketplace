@@ -1,0 +1,55 @@
+@media all {
+
+    /* side bar */
+    .wrapper {
+        display: flex;
+        width: 100%;
+    }
+
+    #leftMenuBar {
+        font-size: 1.2em;
+        width: 250px;
+        position: fixed;
+        padding-top: 60px;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 998;
+        color: #fff !important;
+        transition: all 0.3ms;
+    }
+
+    #leftMenuBar a {
+        color: #fff !important;
+    }
+
+    #leftMenuBar a:active {
+        background-color: #1b1e21 !important;
+    }
+
+    #leftMenuBar a:hover {
+        color: #343B40 !important;
+        background-color: white;
+    }
+
+    button:focus {
+        outline-color: white;
+    }
+    /* side bar end */
+
+    #headerMenu {
+        transition: all 0.3ms;
+        z-index: 999;
+    }
+
+    #content-p {
+        padding-top: 15px;
+        transition: all 0.3ms;
+        position: relative;
+    }
+
+    .dashboard-card {
+        margin-bottom: 15px !important;
+    }
+
+}

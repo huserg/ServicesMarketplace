@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 @if (Auth::check())
-                    <a class="navbar-brand" href="{{ url('/home') }}">
+                    <a class="navbar-brand" href="{{ route('home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 @else
@@ -61,6 +61,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if ( auth()->user()->hasAnyRole(config('auth.ServiceProviderAuth')))
+                                        <a class="dropdown-item" href="{{ route('provider.menu') }}">Management</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
