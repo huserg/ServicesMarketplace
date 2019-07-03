@@ -22,9 +22,17 @@ Route::namespace('Client')->group(function (){
 
 Route::namespace('Provider')->group(function (){
     Route::get('/management', 'ProviderController@dashboard')->name('provider.menu');
+
+    // sellables CRUD
     Route::get('/management/sellable', 'ProviderController@showSellable')->name('provider.sellable');
-    Route::get('/management/sellable/manage/{$id}', 'ProviderController@manageSellable')->name('provider.sellable.manage');
-    Route::get('/management/sellable/order/{$id}', 'ProviderController@orderSellable')->name('provider.sellable.order');
+    Route::get('/management/sellable/{id}/manage', 'ProviderController@manageSellable')->name('provider.sellable.manage');
+    Route::get('/management/sellable/add', 'ProviderController@addSellable')->name('provider.sellable.add');
+    Route::post('/management/sellable/add', 'ProviderController@createSellable')->name('provider.sellable.create');
+    Route::post('/management/sellable/update', 'ProviderController@updateSellable')->name('provider.sellable.update');
+    Route::post('/management/sellable/delete', 'ProviderController@deleteSellable')->name('provider.sellable.delete');
+
+    // order CRUD
+    Route::get('/management/sellable/{id}/order', 'ProviderController@orderSellable')->name('provider.sellable.order');
 
     Route::get('/management/settings', 'ProviderController@showSettings')->name('provider.settings');
 

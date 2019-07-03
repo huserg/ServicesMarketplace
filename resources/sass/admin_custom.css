@@ -52,4 +52,12 @@
         margin-bottom: 15px !important;
     }
 
+    .btn-manage-p {
+        width: 50%;
+    }
+
+    .btn-price {
+        border-color: #113049;
+    }
+
 }
