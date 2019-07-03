@@ -22,7 +22,7 @@ class ProviderOrderController extends Controller
 
         $orders = Order::whereIn('sellable_id',
             Sellable::select('id')->where('owner_id', Auth::id())->get()->toArray()
-        )->get();
+        )->orderBy('created_at', 'desc')->get();
 
         return view('provider.list-orders')->with([
             'orders' => $orders,
@@ -82,7 +82,7 @@ class ProviderOrderController extends Controller
         Order::find($request->get('id'))->delete();
 
         return view('provider.list-orders')->with([
-            'orders' => Order::with('sellable.owner_id', Auth::id())->orderBy('created_at')->get(),
+            'orders' => Order::with('sellable.owner_id', Auth::id())->orderBy('created_at', 'desc')->get(),
             'success_message' => 'You have successfully deleted the order!',
         ]);
     }

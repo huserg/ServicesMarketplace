@@ -16,7 +16,7 @@ class ProviderSellableController extends Controller
 
     public function showSellable(Request $request){
         $request->user()->authorizeRoles(config('auth.ServiceProviderAuth'));
-        return view('provider.list-sellable')->with(['sellables' => Sellable::where('owner_id', Auth::id())->orderBy('created_at')->get()]);
+        return view('provider.list-sellable')->with(['sellables' => Sellable::where('owner_id', Auth::id())->orderBy('created_at', 'desc')->get()]);
     }
 
     public function addSellable(Request $request){
@@ -87,7 +87,7 @@ class ProviderSellableController extends Controller
         Sellable::find($request->get('id'))->delete();
 
         return view('provider.list-sellable')->with([
-            'sellables' => Sellable::where('owner_id', Auth::id())->orderBy('created_at')->get(),
+            'sellables' => Sellable::where('owner_id', Auth::id())->orderBy('created_at', 'desc')->get(),
             'success_message' => 'You have successfully deleted the sellable!',
         ]);
 
