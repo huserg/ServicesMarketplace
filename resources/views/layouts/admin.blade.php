@@ -26,8 +26,13 @@
 
     <aside class="bg-dark text-white collapse" id="leftMenuBar">
         <div class="nav flex-column">
+
+            <a class="nav-link disabled" href="#"></a>
+            <a class="nav-link disabled" href="#"></a>
+            <a class="nav-link disabled" href="#"></a>
             <a class="nav-link active" href="{{ route('provider.menu') }}">Dashboard</a>
-            <a class="nav-link" href="{{ route('provider.sellable') }}">Services</a>
+            <a class="nav-link" href="{{ route('provider.sellable') }}">Sellables</a>
+            <a class="nav-link" href="{{ route('provider.orders') }}">Reservations</a>
             <a class="nav-link" href="{{ route('provider.settings') }}">Settings</a>
         </div>
     </aside>

@@ -10,13 +10,16 @@
         font-size: 1.2em;
         width: 250px;
         position: fixed;
-        padding-top: 60px;
         top: 0;
         left: 0;
         height: 100vh;
         z-index: 998;
         color: #fff !important;
         transition: all 0.3ms;
+    }
+
+    #leftMenuBar .nav-link {
+        min-height: 40px;
     }
 
     #leftMenuBar a {
