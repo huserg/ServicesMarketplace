@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Role;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,9 +42,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class);
     }
 
-    public function services()
+    public function sellables()
     {
-        return $this->hasMany(Services::class);
+        return $this->hasMany(Sellable::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     public function authorizeRoles($roles) {
