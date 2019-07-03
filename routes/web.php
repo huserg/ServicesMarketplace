@@ -24,15 +24,21 @@ Route::namespace('Provider')->group(function (){
     Route::get('/management', 'ProviderController@dashboard')->name('provider.menu');
 
     // sellables CRUD
-    Route::get('/management/sellable', 'ProviderController@showSellable')->name('provider.sellable');
-    Route::get('/management/sellable/{id}/manage', 'ProviderController@manageSellable')->name('provider.sellable.manage');
-    Route::get('/management/sellable/add', 'ProviderController@addSellable')->name('provider.sellable.add');
-    Route::post('/management/sellable/add', 'ProviderController@createSellable')->name('provider.sellable.create');
-    Route::post('/management/sellable/update', 'ProviderController@updateSellable')->name('provider.sellable.update');
-    Route::post('/management/sellable/delete', 'ProviderController@deleteSellable')->name('provider.sellable.delete');
+    Route::get('/management/sellable', 'ProviderSellableController@showSellable')->name('provider.sellable');
+    Route::get('/management/sellable/add', 'ProviderSellableController@addSellable')->name('provider.sellable.add');
+    Route::post('/management/sellable/add', 'ProviderSellableController@createSellable')->name('provider.sellable.create');
+    Route::post('/management/sellable/update', 'ProviderSellableController@updateSellable')->name('provider.sellable.update');
+    Route::post('/management/sellable/delete', 'ProviderSellableController@deleteSellable')->name('provider.sellable.delete');
+    Route::get('/management/sellable/{id}/manage', 'ProviderSellableController@manageSellable')->name('provider.sellable.manage');
 
     // order CRUD
-    Route::get('/management/sellable/{id}/order', 'ProviderController@orderSellable')->name('provider.sellable.order');
+    Route::get('/management/orders', 'ProviderOrderController@showOrders')->name('provider.orders');
+    Route::post('/management/order/add', 'ProviderOrderController@addOrder')->name('provider.order.add');
+    Route::post('/management/order/create', 'ProviderOrderController@createOrder')->name('provider.order.create');
+    Route::post('/management/order/update', 'ProviderOrderController@updateOrder')->name('provider.order.update');
+    Route::get('/management/order/delete', 'ProviderOrderController@deleteOrder')->name('provider.order.delete');
+    Route::get('/management/order/{id}', 'ProviderOrderController@showOrder')->name('provider.order.detail');
+    Route::get('/management/order/{id}/manage', 'ProviderOrderController@manageOrder')->name('provider.order.manage');
 
     Route::get('/management/settings', 'ProviderController@showSettings')->name('provider.settings');
 

@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
+    "ext-json": "^1.0.1",
     "jquery": "^3.4.1"
   }
 }

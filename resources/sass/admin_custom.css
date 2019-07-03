@@ -53,10 +53,7 @@
 
     .dashboard-card {
         margin-bottom: 15px !important;
-    }
-
-    .btn-manage-p {
-        width: 50%;
+        height: auto;
     }
 
     .btn-price {

@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+
+    use SoftDeletes;
 
     protected $fillable = [
         'price'
@@ -18,10 +21,6 @@ class Order extends Model
 
     public function client() {
         return $this->belongsTo(User::class);
-    }
-
-    public function provider() {
-        return $this->hasOneThrough(User::class, Sellable::class);
     }
 
 }

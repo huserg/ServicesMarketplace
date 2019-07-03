@@ -96,6 +96,25 @@
 
 <main id="content-p">
     <div class="container-fluid">
+
+        @isset ($alert_message)
+            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                {{ $alert_message }}
+            </div>
+        @endisset
+
+        @isset ($warning_message)
+            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                {{ $warning_message }}
+            </div>
+        @endisset
+
+        @isset ($success_message)
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                {{ $success_message }}
+            </div>
+        @endisset
+
         @yield('content')
     </div>
 </main>

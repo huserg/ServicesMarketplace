@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->float('price');
             $table->unsignedBigInteger('sellable_id');
             $table->unsignedBigInteger('client_id');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('sellable_id')->references('id')->on('sellables');

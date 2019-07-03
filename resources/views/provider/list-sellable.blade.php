@@ -2,32 +2,27 @@
 
 @section('content')
 
-    @isset ($message_alert)
-        <div class="alert alert-danger text-center" role="alert">
-            {{$message_alert}}
-        </div>
-    @endisset
-
     @if (!isset($sellables[0]))
         <div class="alert alert-warning text-center" role="alert">
-            You don't have any services yet. You can create one <a href="{{route('provider.sellable.add')}}">here</a>.
+            You don't have any sellables yet. You can create one <a href="{{route('provider.sellable.add')}}">here</a>.
         </div>
     @endif
 
     <br>
     <article class="itemlist">
-        <div class="row row-sm">
-            <aside class="col-sm-3">
+        <div class="row">
+            <aside class="col-md-3">
             </aside>
-            <div class="col-sm-6">
+            <div class="col-md-6">
                 <div class="text-wrap">
-                    <h2 class="title"> Your sellables</h2>
+                    <h2 class="title">Your sellables</h2>
                 </div>
             </div>
-            <aside class="col-sm-3">
-                <div class="border-left pl-3">
+            <div class="col-1 d-none d-md-block border-right"></div>
+            <aside class="col-md-2">
+                <div class="">
                     <p class="">
-                        <a href="{{route('provider.sellable.add')}}"  class="btn btn-dark">Add a new sellable</a>
+                        <a href="{{route('provider.sellable.add')}}"  class="btn btn-dark w-100">Add a new sellable</a>
                     </p>
                 </div>
             </aside>
@@ -38,33 +33,34 @@
 
     @foreach ($sellables as $sellable)
         <article class="itemlist">
-            <div class="row row-sm">
-                <aside class="col-sm-3">
+            <div class="row">
+                <aside class="col-md-3">
                     <div class="img-wrap"><img src="{{ isset($sellable->image) ? $sellable->image : asset('images/default_sellable_image.jpg') }}" class="img-fluid" ></div>
                 </aside> <!-- col.// -->
-                <div class="col-sm-6">
+                <div class="col-md-6 pt-2 pt-md-0">
                     <div class="text-wrap">
                         <h4 class="title"> {{$sellable->name}} </h4>
                         <p> {{$sellable->description}} </p>
-                        <!--<p class="rating-wrap my-0 text-muted">
-                            <span class="label-rating">132 reviews</span>
-                            <span class="label-rating">154 orders </span>-->
-                        </p> <!-- rating-wrap.// -->
-                    </div> <!-- text-wrap.// -->
-                </div> <!-- col.// -->
-                <aside class="col-sm-3">
-                    <div class="border-left pl-3">
+                    </div>
+                </div>
+                <div class="col-1 d-none d-md-block border-right"></div>
+                <aside class="col-md-2">
+                    <div class="">
                         <p class="price-wrap">
-                            <span class="btn btn-price btn-manage-p"> {{$sellable->price}} CHF</span>
+                            <span class="btn btn-price w-100"> {{$sellable->price}} CHF</span>
                         </p> <!-- info-price-detail // -->
                         <p class="">
-                            <a href="{{route('provider.sellable.manage', $sellable->id)}}" class="btn btn-dark btn-manage-p">Manage</a>
+                            <a href="{{route('provider.sellable.manage', $sellable->id)}}" class="btn btn-dark w-100">Manage</a>
                         </p>
+                        <form method="POST" action="{{route('provider.order.add')}}">
+                            @csrf
+                            <input type="hidden" value="{{$sellable->id}}" name="sellable">
+                            <p class="">
+                                <button type="submit" class="btn btn-dark w-100">Order for client</button>
+                            </p>
+                        </form>
                         <p class="">
-                            <a href="{{route('provider.sellable.order', $sellable->id)}}" class="btn btn-dark btn-manage-p">Order for client</a>
-                        </p>
-                        <p class="">
-                            <button data-toggle="modal" data-target="#confirm-delete-modal" class="btn btn-danger btn-manage-p" data-name="{{$sellable->name}}" data-id="{{$sellable->id}}">Delete</button><br>
+                            <button data-toggle="modal" data-target="#confirm-delete-modal" class="btn btn-danger w-100" data-name="{{$sellable->name}}" data-id="{{$sellable->id}}">Delete</button><br>
                         </p>
                         <!-- delete confirmation -->
 

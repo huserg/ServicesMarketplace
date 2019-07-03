@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
         $client->name = 'Client Name';
         $client->email = 'client@example.com';
         $client->street = 'Example street 22';
-        $client->zip = '1234';
+        $client->npa = '1234';
         $client->town = 'Example Town';
         $client->country = 'Suisse';
         $client->password = bcrypt('secret');
@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
         $serv_prov->email = 'servprov@example.com';
         $serv_prov->password = bcrypt('secret');
         $serv_prov->street = 'Example street 22';
-        $serv_prov->zip = '1234';
+        $serv_prov->npa = '1234';
         $serv_prov->town = 'Example Town';
         $serv_prov->country = 'Suisse';
         $serv_prov->save();
@@ -45,7 +45,7 @@ class UserTableSeeder extends Seeder
         $admin->email = 'huser.gaetan@hotmail.com';
         $admin->password = bcrypt('Pass123$');
         $admin->street = 'That street';
-        $admin->zip = '666';
+        $admin->npa = '666';
         $admin->town = 'That town';
         $admin->country = 'Suisse';
         $admin->save();
