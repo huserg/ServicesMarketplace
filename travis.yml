@@ -1,0 +1,38 @@
+os:
+  - linux
+
+language: php
+
+php:
+  - '7.2'
+
+addons:
+
+apt:
+
+packages:
+  - google-chrome-stable
+
+services:
+  - mysql
+
+before_script:
+  - mysql -e 'CREATE DATABASE ServicesMarketplace;'
+  - cp .env.travis .env
+  - composer self-update
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - php artisan key:generate
+  - phpenv rehash
+  - nvm install 8.9.0
+  - npm install npm@latest -g
+  - npm install -g jshint
+  - npm install
+  - php artisan dusk:chrome-driver 73
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - php artisan serve &
+
+script:
+  - npm run production
+  # - jshint resources/assets/js/modules/*
+  - php artisan migrate --seed
+  - vendor/bin/phpunit --coverage-text --testdox
