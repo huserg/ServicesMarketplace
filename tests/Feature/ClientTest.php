@@ -16,24 +16,17 @@ class ClientTest extends TestCase
      *
      * @return void
      */
+    use RefreshDatabase;
+
     public function testGetSellableListAsClient() {
 
-        $client = factory(User::class)->make([
-            'role' => Role::where('name', 'Client')->first(),
-        ]);
+        $client = factory(User::class)->make();
+        $client->roles()->attach(factory(Role::class)->make());
 
         $response = $this->actingAs($client)
             ->get('/');
         $response->assertOk()
             ->assertViewHas('sellables');
-    }
-
-    public function testGetSellableDetailUnauthorized() {
-
-        $sellable = factory(Sellable::class)->make(['id' => 1]);
-
-        $response = $this->get('/details/1');
-        $response->assertRedirect('/login');
     }
 
     public function testGetSellableDetailAsClient() {
@@ -47,6 +40,15 @@ class ClientTest extends TestCase
             ->get('/details/' . $sellable->id);
         $response->assertOk()
             ->assertViewHas('sellable');
+    }
+
+    public function testAccessDashboardAsClient() {
+        $client = factory(User::class)->make();
+        $client->roles()->attach(factory(Role::class)->make());
+
+        $response = $this->actingAs($client)
+            ->get('/dashboard');
+        $response->assertStatus('401');
     }
 
 

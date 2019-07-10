@@ -14,9 +14,24 @@ class VisitorTest extends TestCase
      *
      * @return void
      */
+    use RefreshDatabase;
+
     public function testGetSellableListAsVisitor() {
         $response = $this->get('/');
         $response->assertOk()
             ->assertViewHas('sellables');
     }
+
+    public function testGetSellableDetailUnauthorized() {
+        $response = $this->get('/details/1');
+        $response->assertRedirect('/login');
+    }
+
+
+    public function testGetDashboardUnauthorized() {
+        $response = $this->get('/dashboard');
+        $response->assertRedirect('/login');
+    }
+
 }
+

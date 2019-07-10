@@ -76,13 +76,18 @@ class ProviderOrderController extends Controller
         ]);
     }
 
-    public function deleteOrder(Request $request, $id) {
+    public function deleteOrder(Request $request) {
         $request->user()->authorizeRoles(config('auth.ServiceProviderAuth'));
 
         Order::find($request->get('id'))->delete();
 
+        $orders = Order::whereIn('sellable_id',
+            Sellable::select('id')->where('owner_id', Auth::id())->get()->toArray()
+        )->orderBy('created_at', 'desc')->get();
+
         return view('provider.list-orders')->with([
-            'orders' => Order::with('sellable.owner_id', Auth::id())->orderBy('created_at', 'desc')->get(),
+            'orders' => $orders,
+            'sellables' => Sellable::where('owner_id', Auth::id())->get(),
             'success_message' => 'You have successfully deleted the order!',
         ]);
     }

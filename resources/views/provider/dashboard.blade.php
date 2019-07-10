@@ -28,6 +28,8 @@
                         </div>
                 </div>
                 @endisset
+
+                @isset ($order)
                 <div class="col-lg-4 col-md-6">
                         <div class="card dashboard-card">
                                 <a class="card-link" href="{{ route('provider.order.detail', $order->id) }}">
@@ -51,6 +53,7 @@
                                 </div>
                         </div>
                 </div>
+                @endisset
 
                 <div class="col-lg-4 col-md-6 dashboard-card">
                         <div class="card">

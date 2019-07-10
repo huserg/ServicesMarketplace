@@ -6,20 +6,19 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class LoginTest extends DuskTestCase
+class ProviderTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
      *
      * @return void
      */
-    public function testLogin()
+    public function testDashboardAsProvider()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
-                    ->assertSeeIn('.card-header','Login');
+
+            $browser->visit('/dashboard')
+                    ->assertSee('Service Marketplace Dashboard');
         });
     }
-
-
 }

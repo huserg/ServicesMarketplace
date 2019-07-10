@@ -7,11 +7,12 @@ use Faker\Generator as Faker;
 
 $factory->define(Role::class, function (Faker $faker) {
     return [
-        'id' => $faker->uuid,
+        'id' => 1,
         'name' => 'Client'
     ];
 });
 
-$factory->state(Role::class, 'Service Provider', [
+$factory->state(Role::class, 'Provider', [
+    'id' => 2,
     'name' => 'Service Provider',
 ]);

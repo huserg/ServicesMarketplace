@@ -25,7 +25,7 @@
                                 <dt>Description</dt>
                                 <dd><p>{{$sellable->description}}</p></dd>
                             </dl>
-                        </div>
+                        </div>Next booking
                         <hr>
                         <div class="row">
                             <h4 class="col title mb-3 font-weight-bold">Order it!</h4>
