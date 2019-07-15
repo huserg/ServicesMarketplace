@@ -19,10 +19,10 @@
                     <div class="row p-5 pr-5">
                         <div class="col-sm-8 offset-sm-2">
                             <div class="form-group">
-                                <label for="client">Client UID</label>
-                                <input type="number" class="form-control" id="client" name="client" aria-describedby="clientHelp" value="{{old('client')}}">
-                                @if ($errors->has('client'))
-                                    <div class="alert alert-danger alert-dismissible fade show">{{ $errors->first('client') }}</div>
+                                <label for="email">Client Mail</label>
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="{{old('email')}}" required>
+                                @if ($errors->has('email'))
+                                    <div class="alert alert-danger alert-dismissible fade show">{{ $errors->first('email') }}</div>
                                 @else
                                     <br>
                                 @endif
