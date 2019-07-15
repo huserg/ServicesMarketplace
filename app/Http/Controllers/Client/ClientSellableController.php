@@ -47,7 +47,13 @@ class ClientSellableController extends Controller
             'success_message' => 'Order placed successfully!',
             'order' => $order,
         ]);
-
     }
+
+    public function showOrder(Request $request, $id) {
+        $request->user()->authorizeRoles(config('auth.ClientAuth'));
+
+        return view('client.show-order')->with(['order' => Order::find($id)]);
+    }
+
 
 }

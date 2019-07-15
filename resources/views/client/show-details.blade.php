@@ -3,8 +3,10 @@
 @section('content')
 
     <div class="container">
-            <div class="card">
-                <div class="row p-5">
+        <div class="card">
+            <form method="POST" action="{{ route('client.order') }}">
+                @csrf
+                <div class="card-body row p-5">
                     <div class="col-12">
                         <a href="#" data-fancybox=""><img class="img-fluid" src="{{ isset($sellable->image) ? $sellable->image : asset('images/default_sellable_image.jpg') }}"></a>
                     </div>
@@ -30,34 +32,34 @@
                         <div class="row">
                             <h4 class="col title mb-3 font-weight-bold">Order it!</h4>
                         </div>
-                        <div class="row m-1 m-2">
-                            <form method="POST" action="{{ route('client.order') }}" class="col">
-                                <input type="hidden" name="sellable" value="{{$sellable->id}}">
-                                @foreach ($sellable->fields as $field)
-                                    <div class="row form-group">
-                                        <label for="{{$field->name}}" class="col-md-4 col-form-label text-md-left">{{$field->name}} <i class="fa fa-info-circle text-md-right" title="{{$field->description}}"></i></label>
-                                        <div class="col-md-6">
-                                            <input id="{{$field->name}}" type="{{$field->input_type}}" {!!$field->attributes!!} value="{{$field->value}}" class="form-control @error($field->name) is-invalid @enderror" name="{{$field->name}}" value="{{ old($field->name) }}" required>
+                        <input type="hidden" name="sellable" value="{{$sellable->id}}">
+                        @foreach ($sellable->fields as $field)
+                            <div class="row form-group m-1 m-2">
+                                <label for="{{$field->name}}" class="col-md-4 col-form-label text-md-left">{{$field->name}}</label>
+                                <div class="col-md-6">
+                                    <input id="{{$field->name}}" type="{{$field->input_type}}" {!!$field->attributes!!} class="form-control @error($field->name) is-invalid @enderror" name="{{$field->name}}" value="{{old($field->name) ? old($field->name) : $field->value}}" required>
 
-                                            @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </form>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <a href="{{route('client.order')}}" class="btn btn-primary"> Order now </a>
+                                    @error($field->name)
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <small id="{{ $field->name }}-help-block" class="col-md-6 offset-md-4 form-text text-muted">
+                                    {{$field->description}}
+                                </small>
                             </div>
+                        @endforeach
+                    </div> <!-- row.// -->
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col text-center">
+                            <input type="submit" class="btn btn-dark w-auto" value="Order now">
                         </div>
-                    </div> <!-- col.// -->
-                </div> <!-- row.// -->
-            </div> <!-- card.// -->
-
-
+                    </div>
+                </div>
+            </form>
+        </div> <!-- card.// -->
     </div>
 @endsection
