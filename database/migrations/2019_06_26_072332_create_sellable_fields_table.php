@@ -15,17 +15,16 @@ class CreateSellableFieldsTable extends Migration
     {
         Schema::create('sellable_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('fieldable_id');
+            $table->string('fieldable_type');
             $table->string('name');
             $table->string('description');
             $table->string('input_type');
             $table->string('attributes')->nullable();
             $table->string('value')->nullable();
-            $table->unsignedBigInteger('sellable_id');
 
             $table->timestamps();
 
-
-            $table->foreign('sellable_id')->references('id')->on('sellables');
         });
     }
 

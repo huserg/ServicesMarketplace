@@ -11,8 +11,8 @@ class SellableField extends Model
         'name', 'description', 'input_type', 'attributes', 'value'
     ];
 
-    public function sellable() {
-        return $this->belongsTo('App\Models\Sellable');
+    public function fieldable() {
+        return $this->morphTo();
     }
 
 

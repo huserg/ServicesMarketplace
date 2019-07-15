@@ -20,7 +20,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->description = 'The localization of the service';
         $field->input_type = 'text';
         $field->attributes = 'placeholder="Enter your localization"';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
@@ -29,7 +29,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->input_type = 'number';
         $field->attributes = 'min="10" max="400" step="10"';
         $field->value = '50';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
@@ -38,7 +38,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->input_type = 'number';
         $field->attributes = 'step="0.5"';
         $field->value = '2.5';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
 
@@ -49,7 +49,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->description = 'The localization of the service';
         $field->input_type = 'text';
         $field->attributes = 'placeholder="Enter your localization"';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
@@ -58,7 +58,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->input_type = 'number';
         $field->attributes = 'min="10" max="400" step="10"';
         $field->value = '50';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
@@ -67,7 +67,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->input_type = 'number';
         $field->attributes = 'step="0.5"';
         $field->value = '2.5';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
         $service = Sellable::find(3);
@@ -77,7 +77,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->description = 'The localization of the service';
         $field->input_type = 'text';
         $field->attributes = 'placeholder="Enter your localization"';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
@@ -86,7 +86,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->input_type = 'number';
         $field->attributes = 'min="10" max="400" step="10"';
         $field->value = '50';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
@@ -95,7 +95,7 @@ class Sellable_FieldSeeder extends Seeder
         $field->input_type = 'number';
         $field->attributes = 'step="0.5"';
         $field->value = '2.5';
-        $field->sellable()->associate($service);
+        $field->fieldable()->associate($service);
         $field->save();
 
     }

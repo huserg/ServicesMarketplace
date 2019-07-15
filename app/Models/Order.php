@@ -12,7 +12,7 @@ class Order extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'price'
+        'price', 'cancelled_at'
     ];
 
     public function sellable(){
@@ -21,6 +21,10 @@ class Order extends Model
 
     public function client() {
         return $this->belongsTo(User::class);
+    }
+
+    public function fields() {
+        return $this->MorphMany(SellableField::class, 'fieldable');
     }
 
 }

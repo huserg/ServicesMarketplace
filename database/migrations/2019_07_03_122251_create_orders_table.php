@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->float('price');
             $table->unsignedBigInteger('sellable_id');
             $table->unsignedBigInteger('client_id');
+            $table->timestamp('cancelled_at');
             $table->softDeletes();
             $table->timestamps();
 

@@ -19,7 +19,7 @@ class Sellable extends Model
     }
 
     public function fields() {
-        return $this->hasMany(SellableField::class);
+        return $this->MorphMany(SellableField::class, 'fieldable');
     }
 
     public function orders() {
