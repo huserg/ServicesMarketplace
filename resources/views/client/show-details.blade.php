@@ -32,6 +32,7 @@
                         </div>
                         <div class="row m-1 m-2">
                             <form method="POST" action="{{ route('client.order') }}" class="col">
+                                <input type="hidden" name="sellable" value="{{$sellable->id}}">
                                 @foreach ($sellable->fields as $field)
                                     <div class="row form-group">
                                         <label for="{{$field->name}}" class="col-md-4 col-form-label text-md-left">{{$field->name}} <i class="fa fa-info-circle text-md-right" title="{{$field->description}}"></i></label>
@@ -50,7 +51,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <a href="#" class="btn btn-primary"> Order now </a>
+                                <a href="{{route('client.order')}}" class="btn btn-primary"> Order now </a>
                             </div>
                         </div>
                     </div> <!-- col.// -->

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Sellable;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientSellableController extends Controller
 {
@@ -24,4 +27,27 @@ class ClientSellableController extends Controller
 
         return view('client.show-details')->with('sellable', Sellable::find($id));
     }
+
+    public function order(Request $request) {
+        $request->user()->authorizeRoles(config('auth.ClientAuth'));
+
+        $request->validate([
+            'sellable' => 'required|exists:sellables,id'
+        ]);
+
+        $sellable = Sellable::find($request->get('sellable'));
+
+        $order = new Order();
+        $order->sellable()->associate($sellable);
+        $order->client()->associate(Auth::user());
+        $order->price = $sellable->price;
+        $order->save();
+
+        return view('client.show-order')->with([
+            'success_message' => 'Order placed successfully!',
+            'order' => $order,
+        ]);
+
+    }
+
 }

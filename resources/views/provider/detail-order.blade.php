@@ -4,6 +4,7 @@
 
     <div class="container">
         <div class="card">
+            @isset($order)
             <div class="row p-5">
                 <aside class="col-md-3">
                     <a href="#" data-fancybox=""><img class="img-fluid" src="{{ isset($order->sellable->image) ? $order->sellable->image : asset('images/default_sellable_image.jpg') }}"></a>
@@ -71,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            @endisset
         </div> <!-- card.// -->
     </div>
 
