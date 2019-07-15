@@ -15,10 +15,15 @@ Route::get('/', 'Visitor\VisitorSellableController@index');
 
 
 Route::namespace('Client')->group(function (){
+
     Route::get('/home', 'ClientSellableController@index')->name('home');
     Route::get('/details/{id}', 'ClientSellableController@details')->name('client.sellable.details');
-    Route::post('/order/confirmation', 'ClientSellableController@order')->name('client.order');
-    Route::get('/order/{id}', 'ClientSellableController@showOrder')->name('client.order.details');
+
+    // order CRUD
+    Route::get('/orders', 'ClientOrderController@showAll')->name('client.orders');
+    Route::post('/order/confirmation', 'ClientOrderController@order')->name('client.order');
+    Route::post('/order/cancel', 'ClientOrderController@cancel')->name('client.order.cancel');
+    Route::get('/order/{id}', 'ClientOrderController@showOrder')->name('client.order.details');
 });
 
 Route::namespace('Provider')->group(function (){

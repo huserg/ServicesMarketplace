@@ -10662,6 +10662,21 @@ a.text-dark:focus {
   }
 }
 
+@media all {
+  .btn-price {
+    border-color: #113049;
+  }
+
+  .btn-cancelled {
+    border-color: #E3342F;
+    color: #E3342F;
+  }
+
+  .btn-cancelled:hover {
+    color: #E3342F;
+  }
+}
+
 /*!
  * Font Awesome Free 5.9.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

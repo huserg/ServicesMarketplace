@@ -64,6 +64,7 @@
                                     @if ( auth()->user()->hasAnyRole(config('auth.ServiceProviderAuth')))
                                         <a class="dropdown-item" href="{{ route('provider.menu') }}">Dashboard</a>
                                     @endif
+                                    <a class="dropdown-item" href="{{route('client.orders')}}">Your orders</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

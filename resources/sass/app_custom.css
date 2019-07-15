@@ -1,0 +1,18 @@
+@media all {
+
+
+
+    .btn-price {
+        border-color: #113049;
+    }
+
+    .btn-cancelled {
+        border-color: #E3342F;
+        color: #E3342F;
+    }
+
+    .btn-cancelled:hover {
+        color: #E3342F;
+    }
+
+}

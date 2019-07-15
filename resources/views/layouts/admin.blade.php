@@ -72,8 +72,9 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @if ( auth()->user()->hasAnyRole(config('auth.ServiceProviderAuth')))
-                                <a class="dropdown-item" href="{{ route('provider.menu') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('home') }}">Home</a>
                             @endif
+                            <a class="dropdown-item" href="{{route('client.orders')}}">Your orders</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
