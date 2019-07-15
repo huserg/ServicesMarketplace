@@ -50,8 +50,7 @@ class ProviderOrderController extends Controller
         $request->user()->authorizeRoles(config('auth.ServiceProviderAuth'));
 
         $request->validate([
-            'sellable' => 'required|exists:sellables,id',
-            'client' => 'required|exists:users,id',
+            'email' => 'required|exists:users',
         ]);
 
         $sellable = Sellable::find($request->get('sellable'));
