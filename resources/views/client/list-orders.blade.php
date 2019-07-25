@@ -52,7 +52,7 @@
                                                     <br>
                                                 @endif
                                             </p>
-                                            <!-- delete confirmation -->
+                                            <!-- cancel confirmation -->
 
                                             <div class="modal fade" id="confirm-cancel-modal" tabindex="-1"
                                                  role="dialog" aria-labelledby="confirm-cancel-modal-label"

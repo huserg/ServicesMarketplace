@@ -42,6 +42,7 @@ Route::namespace('Provider')->group(function (){
     Route::post('/dashboard/order/add', 'ProviderOrderController@addOrder')->name('provider.order.add');
     Route::post('/dashboard/order/create', 'ProviderOrderController@createOrder')->name('provider.order.create');
     Route::post('/dashboard/order/update', 'ProviderOrderController@updateOrder')->name('provider.order.update');
+    Route::post('/dashboard/order/cancel', 'ProviderOrderController@cancelOrder')->name('provider.order.cancel');
     Route::post('/dashboard/order/delete', 'ProviderOrderController@deleteOrder')->name('provider.order.delete');
     Route::get('/dashboard/order/{id}', 'ProviderOrderController@showOrder')->name('provider.order.detail');
     Route::get('/dashboard/order/{id}/manage', 'ProviderOrderController@manageOrder')->name('provider.order.manage');

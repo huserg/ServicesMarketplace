@@ -48,6 +48,11 @@
                                     <br>
                                 @endif
                             </div>
+
+                            @foreach ($fields as $field)
+                                {!! $field !!}
+                            @endforeach
+
                         </div>
                     </div>
                 </div>

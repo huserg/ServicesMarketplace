@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\Provider;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DynamicInputTypesController;
+use App\Mail\ClientOrderPlaced;
+use App\Mail\ProviderOrderReceived;
 use App\Models\Order;
 use App\Models\Sellable;
+use App\Models\SellableField;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ProviderOrderController extends Controller
 {
@@ -41,8 +47,11 @@ class ProviderOrderController extends Controller
     public function addOrder(Request $request){
         $request->user()->authorizeRoles(config('auth.ServiceProviderAuth'));
 
+        $sellable = Sellable::find($request->get('sellable'));
+
         return view('provider.add-order')->with([
-            'sellable' => Sellable::find($request->get('sellable')),
+            'sellable' => $sellable,
+            'fields' => DynamicInputTypesController::getDynamicInputTypesHTMLFormFill($sellable),
         ]);
     }
 
@@ -57,9 +66,21 @@ class ProviderOrderController extends Controller
 
         $order = new Order();
         $order->sellable()->associate($sellable);
-        $order->client()->associate(User::find($request->get('client')));
+        $order->client()->associate(User::where('email', $request->get('email'))->first());
         $order->price = $sellable->price;
+        // saving new order first
         $order->save();
+        // then getting fields
+        foreach ($sellable->fields as $s_field) {
+            $o_field = new SellableField();
+            $o_field->name = $s_field->name;
+            $o_field->value = $request->get(str_replace(' ', '_', $s_field->name));
+            $o_field->fieldable()->associate($order);
+            $o_field->save();
+        }
+
+        Mail::to($order->client->email)->send(new ProviderOrderReceived($order));
+        Mail::to($order->sellable->owner->email)->send(new ClientOrderPlaced($order));
 
         return view('provider.detail-order')->with([
             'success_message' => 'Order placed successfully!',
@@ -70,9 +91,29 @@ class ProviderOrderController extends Controller
     public function manageOrder(Request $request, $id) {
         $request->user()->authorizeRoles(config('auth.ServiceProviderAuth'));
 
+        $order = Order::find($id);
+
         return view('provider.update-order')->with([
-            'order' => Order::find($id),
+            'order' => $order,
+            'fields' => DynamicInputTypesController::getDynamicInputTypesHTMLFormFill($order),
         ]);
+    }
+
+    public function updateOrder(Request $request) {
+        $request->user()->authorizeRoles(config('auth.ServiceProviderAuth'));
+
+        $order = Order::find($request->get('id'));
+
+        foreach($order->fields as $field) {
+            $field->value = $request->get($field->name);
+        }
+
+        $order->save();
+
+        return view('provider.detail-order')->with([
+            'success_message' => 'Order modified successfully!',
+            'order' => $order,
+            ]);
     }
 
     public function deleteOrder(Request $request) {
@@ -88,6 +129,20 @@ class ProviderOrderController extends Controller
             'orders' => $orders,
             'sellables' => Sellable::where('owner_id', Auth::id())->get(),
             'success_message' => 'You have successfully deleted the order!',
+        ]);
+    }
+
+
+    public function cancelOrder(Request $request) {
+        $request->user()->authorizeRoles(config('auth.ServiceProviderAuth'));
+
+        $order = Order::find($request->get('id'));
+        $order->cancelled_at = Carbon::now()->toDateTimeString();
+        $order->save();
+
+        return view('provider.detail-order')->with([
+            'success_message' => 'You have successfully cancelled the order!',
+            'order' => $order,
         ]);
     }
 

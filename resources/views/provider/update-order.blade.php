@@ -9,11 +9,16 @@
                 <input type="hidden" id="id" name="id" value="{{$order->id}}"/>
 
                 <div class="card-header">
-                    <div class="font-weight-bold">{{$order->sellable->name}}</div>
+                    <div class="row">
+                        <div class="font-weight-bold col-md-5">{{$order->sellable->name}}</div>
+                        <div class="font-weight-bold col-md-5">{{$order->client->name}}</div>
+                        <div class="font-weight-bold col-md-2">{{$order->price}} CHF</div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="row p-5">
-                    </div> <!-- row.// -->
+                <div class="card-body p-5">
+                        @foreach ($fields as $field)
+                            {!! $field !!}
+                        @endforeach
                 </div>
                 <div class="card-footer">
                     <div class="row ">

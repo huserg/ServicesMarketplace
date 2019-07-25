@@ -27,29 +27,17 @@
                                 <dt>Description</dt>
                                 <dd><p>{{$sellable->description}}</p></dd>
                             </dl>
-                        </div>Next booking
+                        </div>
                         <hr>
                         <div class="row">
                             <h4 class="col title mb-3 font-weight-bold">Order it!</h4>
                         </div>
                         <input type="hidden" name="sellable" value="{{$sellable->id}}">
-                        @foreach ($sellable->fields as $field)
-                            <div class="row form-group m-1 m-2">
-                                <label for="{{$field->name}}" class="col-md-4 col-form-label text-md-left">{{$field->name}}</label>
-                                <div class="col-md-6">
-                                    <input id="{{$field->name}}" type="{{$field->input_type}}" {!!$field->attributes!!} class="form-control @error($field->name) is-invalid @enderror" name="{{$field->name}}" value="{{old($field->name) ? old($field->name) : $field->value}}" required>
 
-                                    @error($field->name)
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <small id="{{ $field->name }}-help-block" class="col-md-6 offset-md-4 form-text text-muted">
-                                    {{$field->description}}
-                                </small>
-                            </div>
+                        @foreach ($fields as $field)
+                            {!! $field !!}
                         @endforeach
+
                     </div> <!-- row.// -->
                 </div>
                 <div class="card-footer">

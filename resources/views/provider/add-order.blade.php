@@ -31,22 +31,8 @@
                             <hr>
                         </div>
                         <div class="col-sm-8 offset-sm-2">
-                            @foreach ($sellable->fields as $field)
-                                <div class="row form-group">
-                                    <label for="{{$field->name}}" class="col-md-4 col-form-label text-md-left">{{$field->name}}</label>
-                                    <div class="col-md-8">
-                                        <input id="{{$field->name}}" type="{{$field->input_type}}" {!!$field->attributes!!} class="form-control @error($field->name) is-invalid @enderror" name="{{$field->name}}" value="{{old($field->name) ? old($field->name) : $field->value}}" required>
-
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                        @enderror
-                                    </div>
-                                    <small id="{{ $field->name }}-help-block" class="col-md-6 offset-md-4 form-text text-muted">
-                                        {{$field->description}}
-                                    </small>
-                                </div>
+                            @foreach ($fields as $field)
+                                {!! $field !!}
                             @endforeach
                         </div>
                     </div>

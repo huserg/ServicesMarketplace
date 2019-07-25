@@ -79,11 +79,23 @@
                         <p class="">
                             <a href="{{route('provider.order.detail', $order->id)}}" class="btn btn-dark w-100">Show details</a>
                         </p>
+                        @if(!isset($order->cancelled_at))
                         <p class="">
                             <a href="{{route('provider.order.manage', $order->id)}}" class="btn btn-dark w-100">Manage for client</a>
                         </p>
+                        @endif
                         <p class="">
-                            <button data-toggle="modal" data-target="#confirm-delete-modal" class="btn btn-danger w-100" data-name="{{$order->client->name}}" data-id="{{$order->id}}">Delete</button><br>
+                            @if(isset($order->cancelled_at))
+                                <span class="btn btn-cancelled w-100">Cancelled</span>
+                                <br>
+                            @else
+                                <button data-toggle="modal" data-target="#confirm-cancel-modal" class="btn btn-danger w-100" data-name="{{$order->client->name}}" data-id="{{$order->id}}">Cancel</button>
+                                <br>
+                            @endif
+                        </p>
+                        <p class="">
+                            <button data-toggle="modal" data-target="#confirm-delete-modal" class="btn btn-danger w-100" data-name="{{$order->client->name}}" data-id="{{$order->id}}">Delete</button>
+                            <br>
                         </p>
                         <!-- delete confirmation -->
 
@@ -94,10 +106,10 @@
                                         <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="alert alert-danger" id="modal-text"></div>
+                                        <div class="alert alert-danger" id="modal-text-delete"></div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
                                         <form method="POST" action="{{route('provider.order.delete')}}">
                                             @csrf
                                             <input type="hidden" class="input-id" name="id"/>
@@ -107,6 +119,28 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="modal fade" id="confirm-cancel-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-cancel-modal-label" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="alert alert-danger" id="modal-text-cancel"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+                                        <form method="POST" action="{{route('provider.order.cancel')}}">
+                                            @csrf
+                                            <input type="hidden" class="input-id" name="id"/>
+                                            <button type="submit" class="btn btn-danger">Cancel</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div> <!-- action-wrap.// -->
                 </aside> <!-- col.// -->
             </div> <!-- row.// -->

@@ -21,6 +21,7 @@
 </head>
 <body>
 
+<div id="app">
 
 <div class="container-fluid">
 
@@ -119,5 +120,6 @@
         @yield('content')
     </div>
 </main>
+</div>
 </body>
 </html>

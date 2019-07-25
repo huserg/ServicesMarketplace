@@ -20,7 +20,20 @@
                 <div class="col-1 border-right d-none d-md-block"></div>
                 <div class="col-md-3">
                     <var class="price h3 text-info">
-                        <span class="num">{{$order->price}} </span><span class="currency">CHF</span>
+                        @if(isset($order->cancelled_at))
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-danger">
+                                        <div class="num">Cancelled !</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <del class="col"><span class="num">{{$order->price}} </span><span class="currency">CHF</span></del>
+                            </div>
+                        @else
+                            <span class="num">{{$order->price}} </span><span class="currency">CHF</span>
+                        @endif
                     </var>
                 </div>
             </div> <!-- row.// -->
@@ -43,7 +56,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col">
-                                    {{$order->client->street}}
+                                {{$order->client->street}}
                                 </div>
                             </div>
                             <div class="row">
@@ -58,20 +71,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row pb-2 p-md-2">
-                        <div class="col-sm-3 font-weight-bold"></div>
-                        <div class="col-sm-1 border-right d-none d-sm-block"></div>
-                        <div class="col-sm-8"></div>
-                    </div>
+                    @foreach ($order->fields as $field)
+                        <div class="row pb-2 p-md-2">
+                            <div class="col-sm-3 font-weight-bold">
+                                {{$field->name}}
+                            </div>
+                            <div class="col-sm-1 border-right d-none d-sm-block"></div>
+                            <div class="col-sm-8">
+                                {{$field->value}}
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="card-footer">
-                <div class="row ">
-                    <div class="col text-center">
-                        <a href="{{route('provider.order.manage', $order->id)}}" class="btn btn-dark btn-manage-p w-auto">Manage for client</a>
+            @if(!isset($order->cancelled_at))
+                <div class="card-footer">
+                    <div class="row ">
+                        <div class="col text-center">
+                            <a href="{{route('provider.order.manage', $order->id)}}" class="btn btn-dark btn-manage-p w-auto">Manage for client</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
             @endisset
         </div> <!-- card.// -->
     </div>
