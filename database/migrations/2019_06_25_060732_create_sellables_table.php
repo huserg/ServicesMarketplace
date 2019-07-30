@@ -16,7 +16,7 @@ class CreateSellablesTable extends Migration
         Schema::create('sellables', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('description');
+            $table->longText('description');
             $table->float('price');
             $table->string('image',255)->default(null)->nullable();
             $table->integer('type');

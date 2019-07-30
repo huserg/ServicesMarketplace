@@ -8,7 +8,8 @@ use App\Http\Controllers\DynamicInputTypesController;
 use App\Models\Sellable;
 use App\Models\SellableField;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManager;
 
 class ProviderSellableController extends Controller
 {
@@ -41,11 +42,27 @@ class ProviderSellableController extends Controller
         ]);
 
         $data = $request->post();
+        // remove token
         array_shift($data);
 
         $sellable = new Sellable();
         $sellable->type = 1;
-        $sellable->image = array_shift($data);
+
+        $image = $request->all()['image'];
+
+        if (isset($image)) {
+            $file = $request->file('image');
+            $name = sha1(date('YmdHis')) . '.' . $file->getClientOriginalExtension();
+            $image_path = '/services_img/' . $name;
+            $manager = new ImageManager();
+
+            $manager->make($image)
+                ->orientate()
+                ->save(public_path() . $image_path);
+
+            $sellable->image = $image_path;
+        }
+
         $sellable->name = array_shift($data);
         $sellable->price = array_shift($data);
         $sellable->description = array_shift($data);
@@ -56,7 +73,7 @@ class ProviderSellableController extends Controller
         $field = null;
         $type = null;
 
-        if (isset($data)) {
+        if (isset($data[0])) {
             foreach ($data as $key => $value) {
                 if (substr($key, 0,5) == 'field') {
                     if (isset($type))

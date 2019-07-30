@@ -11,8 +11,7 @@
     E-mail              {{$order->client->email}}
 
     Address             {{$order->client->street}}
-                        {{$order->client->npa}}
-                        {{$order->client->town}}
+                        {{$order->client->npa}} {{$order->client->town}}
                         {{$order->client->country}}
 
     @foreach ($order->fields as $field){{$field->name}}     {{$field->value}}

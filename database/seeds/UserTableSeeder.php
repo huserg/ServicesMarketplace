@@ -19,23 +19,23 @@ class UserTableSeeder extends Seeder
         $role_admin = Role::where('name', 'Administrator')->first();
 
         $client = new User();
-        $client->name = 'Client Name';
+        $client->name = 'Mike Horm';
         $client->email = 'client@example.com';
-        $client->street = 'Example street 22';
-        $client->npa = '1234';
-        $client->town = 'Example Town';
+        $client->street = 'Bombay Street 77';
+        $client->npa = '3960';
+        $client->town = 'Sierre';
         $client->country = 'Suisse';
         $client->password = bcrypt('secret');
         $client->save();
         $client->roles()->attach($role_client);
 
         $serv_prov = new User();
-        $serv_prov->name = 'Service Provider Name';
+        $serv_prov->name = 'Carvitre SA';
         $serv_prov->email = 'servprov@example.com';
         $serv_prov->password = bcrypt('secret');
-        $serv_prov->street = 'Example street 22';
-        $serv_prov->npa = '1234';
-        $serv_prov->town = 'Example Town';
+        $serv_prov->street = 'Rue de l\'OURS 4';
+        $serv_prov->npa = '1950';
+        $serv_prov->town = 'Sion';
         $serv_prov->country = 'Suisse';
         $serv_prov->save();
         $serv_prov->roles()->attach($role_serv_prov);
@@ -44,9 +44,9 @@ class UserTableSeeder extends Seeder
         $admin->name = 'Gaétan Huser';
         $admin->email = 'huser.gaetan@hotmail.com';
         $admin->password = bcrypt('Pass123$');
-        $admin->street = 'That street';
-        $admin->npa = '666';
-        $admin->town = 'That town';
+        $admin->street = 'Rue de la Censure 42';
+        $admin->npa = '1963';
+        $admin->town = 'Vétroz';
         $admin->country = 'Suisse';
         $admin->save();
         $admin->roles()->attach($role_admin);

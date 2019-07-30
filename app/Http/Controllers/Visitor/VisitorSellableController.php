@@ -9,6 +9,6 @@ use Illuminate\Http\Request;
 class VisitorSellableController extends Controller
 {
     public function index() {
-        return view( 'visitor.display-all')->with(['sellables' => Sellable::all()->sortBy('lastModified')]);
+        return view( 'client.display-all')->with(['sellables' => Sellable::all()->sortBy('lastModified')]);
     }
 }

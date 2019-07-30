@@ -22,7 +22,9 @@ class DynamicInputTypesController extends Controller
                 $html = '
                     <div class="form-group">
                         <label for="' . str_replace(' ', '_', $inputType->name) . '">' . $inputType->name . '</label>
-                        <textarea class="form-control" id="' . str_replace(' ', '_', $inputType->name) . '" name="' . str_replace(' ', '_', $inputType->name) . '" aria-describedby="' . str_replace(' ', '_', $inputType->name) . '-Help" '. $inputType->attributes .'>'. $inputType->value .'</textarea>
+                        <textarea class="form-control" id="' . str_replace(' ', '_', $inputType->name) . '" 
+                            name="' . str_replace(' ', '_', $inputType->name) . '" 
+                            aria-describedby="' . str_replace(' ', '_', $inputType->name) . '-Help" '. $inputType->attributes .'>'. $inputType->value .'</textarea>
                     </div>
                 ';
             }
@@ -30,7 +32,8 @@ class DynamicInputTypesController extends Controller
                 $html = '
                     <div class="form-group">
                         <label for="' . str_replace(' ', '_', $inputType->name) . '">' . $inputType->name . '</label>
-                        <input class="form-control" type="'. $inputType->input_type .'" id="' . str_replace(' ', '_', $inputType->name) . '" name="' . str_replace(' ', '_', $inputType->name) . '"  '. $inputType->attributes .' value="'. $inputType->value .'">
+                        <input class="form-control" type="'. $inputType->input_type .'" id="' . str_replace(' ', '_', $inputType->name) . '" 
+                        name="' . str_replace(' ', '_', $inputType->name) . '"  '. $inputType->attributes .' value="'. $inputType->value .'">
                     </div>
                 ';
             }

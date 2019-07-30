@@ -59,14 +59,23 @@ class ProviderOrderController extends Controller
         $request->user()->authorizeRoles(config('auth.ServiceProviderAuth'));
 
         $request->validate([
-            'email' => 'required|exists:users',
+            'email' => 'required',
         ]);
 
+        $client = User::where('email', $request->get('email'))->first();
         $sellable = Sellable::find($request->get('sellable'));
+
+        if (!isset($client)) {
+            return view('provider.add-order')->with([
+                'alert_message' => $request->get('email') . ' not found in clients, please enter a valid client email.',
+                'sellable' => $sellable,
+                'fields' => DynamicInputTypesController::getDynamicInputTypesHTMLFormFill($sellable),
+            ]);
+        }
 
         $order = new Order();
         $order->sellable()->associate($sellable);
-        $order->client()->associate(User::where('email', $request->get('email'))->first());
+        $order->client()->associate($client);
         $order->price = $sellable->price;
         // saving new order first
         $order->save();

@@ -31,7 +31,7 @@
                                                 <span class="h3 price text-info"> {{$sellable->price}} CHF</span>
                                             </div> <!-- info-price-detail // -->
                                             <p>
-                                                <a href="/login" class="btn btn-dark"> Details  </a> </p>
+                                                <a href="" class="btn btn-dark"> Details  </a> </p>
                                         </div> <!-- action-wrap.// -->
                                     </aside> <!-- col.// -->
                                 </div> <!-- row.// -->

@@ -16,28 +16,35 @@ class Sellable_FieldSeeder extends Seeder
         $service = Sellable::find(1);
 
         $field = new SellableField();
-        $field->name = 'Localization';
-        $field->description = 'The localization of the service';
+        $field->name = 'Rue et N°';
+        $field->description = 'L\'adresse ou se situe votre maison / appartement';
         $field->input_type = 'text';
-        $field->attributes = 'placeholder="Enter your localization"';
+        $field->attributes = 'placeholder="Entrez votre adresse et n°"';
         $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
-        $field->name = 'Surface (m2)';
-        $field->description = 'The surface of the flat';
-        $field->input_type = 'number';
-        $field->attributes = 'min="10" max="400" step="10"';
-        $field->value = '50';
+        $field->name = 'NPA + Ville';
+        $field->description = 'La ville ou se situe votre maison / appartement';
+        $field->input_type = 'text';
+        $field->attributes = 'placeholder="Entrez votre NPA et votre ville"';
         $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
-        $field->name = 'Number of pieces';
-        $field->description = 'The number of pieces of the flat';
+        $field->name = 'Surface à laver (estimation en m2)';
+        $field->description = 'La surface estimée de vos vitres à nettoyer. Merci de calculer large.';
         $field->input_type = 'number';
-        $field->attributes = 'step="0.5"';
-        $field->value = '2.5';
+        $field->attributes = 'min="10" step="10"';
+        $field->value = '';
+        $field->fieldable()->associate($service);
+        $field->save();
+
+        $field = new SellableField();
+        $field->name = 'Numéro de téléphone';
+        $field->description = 'Un numéro de téléphone auquel vous êtes atteignable pour prendre rendez-vous.';
+        $field->input_type = 'text';
+        $field->attributes = 'placeholder="format 0041 xx xxx xx xx"';
         $field->fieldable()->associate($service);
         $field->save();
 
@@ -45,56 +52,37 @@ class Sellable_FieldSeeder extends Seeder
         $service = Sellable::find(2);
 
         $field = new SellableField();
-        $field->name = 'Localization';
-        $field->description = 'The localization of the service';
-        $field->input_type = 'text';
-        $field->attributes = 'placeholder="Enter your localization"';
-        $field->fieldable()->associate($service);
-        $field->save();
-
-        $field = new SellableField();
-        $field->name = 'Surface (m2)';
-        $field->description = 'The surface of the flat';
-        $field->input_type = 'number';
-        $field->attributes = 'min="10" max="400" step="10"';
-        $field->value = '50';
-        $field->fieldable()->associate($service);
-        $field->save();
-
-        $field = new SellableField();
-        $field->name = 'Number of pieces';
-        $field->description = 'The number of pieces of the flat';
-        $field->input_type = 'number';
-        $field->attributes = 'step="0.5"';
-        $field->value = '2.5';
+        $field->name = 'Description de votre idée';
+        $field->description = 'Merci de remplir cette description de manière la plus précise possible.';
+        $field->input_type = 'textarea';
+        $field->attributes = 'rows="10';
         $field->fieldable()->associate($service);
         $field->save();
 
         $service = Sellable::find(3);
 
         $field = new SellableField();
-        $field->name = 'Localization';
-        $field->description = 'The localization of the service';
+        $field->name = 'Lieu souhaité';
+        $field->description = 'Merci d\'indiquer un lieu situé en Valais.';
         $field->input_type = 'text';
-        $field->attributes = 'placeholder="Enter your localization"';
+        $field->attributes = 'placeholder="Entrez le lieu souhaité"';
         $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
-        $field->name = 'Surface (m2)';
-        $field->description = 'The surface of the flat';
+        $field->name = 'Nombre de personnes';
+        $field->description = 'Combien de personnes participeront à la visite.';
         $field->input_type = 'number';
-        $field->attributes = 'min="10" max="400" step="10"';
-        $field->value = '50';
+        $field->attributes = 'min="3" max="15"';
         $field->fieldable()->associate($service);
         $field->save();
 
         $field = new SellableField();
-        $field->name = 'Number of pieces';
-        $field->description = 'The number of pieces of the flat';
-        $field->input_type = 'number';
-        $field->attributes = 'step="0.5"';
-        $field->value = '2.5';
+        $field->name = 'Date de la visite';
+        $field->description = 'La date à laquelle vous souhaitez votre visite. Les visites commencent le 15 Septembre 2019';
+        $field->input_type = 'date';
+        $field->attributes = 'min="2019-09-15"';
+        $field->value = '2019-09-15';
         $field->fieldable()->associate($service);
         $field->save();
 

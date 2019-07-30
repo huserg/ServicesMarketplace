@@ -28,22 +28,31 @@
                                 <dd><p>{{$sellable->description}}</p></dd>
                             </dl>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <h4 class="col title mb-3 font-weight-bold">Order it!</h4>
-                        </div>
-                        <input type="hidden" name="sellable" value="{{$sellable->id}}">
+                        @if (auth()->check())
+                            <hr>
+                            <div class="row">
+                                <h4 class="col title mb-3 font-weight-bold">Order it!</h4>
+                            </div>
+                            <input type="hidden" name="sellable" value="{{$sellable->id}}">
 
                         @foreach ($fields as $field)
                             {!! $field !!}
                         @endforeach
+                        @else
+                            <hr>
+                            <div class="row">
+                                <p class="col title mb-3 font-weight-bold">Please login to place an order</p>
+                            </div>
+                        @endif
 
                     </div> <!-- row.// -->
                 </div>
                 <div class="card-footer">
                     <div class="row">
                         <div class="col text-center">
+                            @if (auth()->check())
                             <input type="submit" class="btn btn-dark w-auto" value="Order now">
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -48,11 +48,11 @@
                                     <br>
                                 @endif
                             </div>
-
+                            @isset($fields)
                             @foreach ($fields as $field)
                                 {!! $field !!}
                             @endforeach
-
+                            @endisset
                         </div>
                     </div>
                 </div>

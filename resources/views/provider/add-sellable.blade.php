@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="card mb-5">
-            <form method="POST" action="{{route('provider.sellable.create')}}">
+            <form method="POST" action="{{route('provider.sellable.create')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-header">
                     <div class="font-weight-bold">Add a new sellable</div>

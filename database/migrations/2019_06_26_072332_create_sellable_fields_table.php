@@ -18,7 +18,7 @@ class CreateSellableFieldsTable extends Migration
             $table->unsignedBigInteger('fieldable_id');
             $table->string('fieldable_type');
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('input_type')->nullable();
             $table->string('attributes')->nullable();
             $table->string('value')->nullable();
